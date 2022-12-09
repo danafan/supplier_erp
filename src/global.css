@@ -1,0 +1,84 @@
+*{
+  margin:0;
+  padding: 0;
+}
+div{
+  box-sizing: border-box;
+}
+
+/*pc端*/
+@media only screen and (min-width: 1200px) {
+  html{
+  	font-size: 1px;
+  }
+}
+/*pad端*/
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+  html{
+  	font-size: 1px;
+  }
+}
+/*手机端*/
+@media only screen and (max-width: 767px) {
+  html{
+  	font-size: .6px;
+  }
+}
+
+/* 取消input的上下箭头 */
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+}
+
+input::-webkit-outer-spin-button {
+  -webkit-appearance: none !important;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/*占满整个页面宽高*/
+.fill{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.primary_color{
+	color:#5575EB;
+}
+
+.f22{
+	font-size: 22rem;
+}
+.mb32{
+	margin-bottom: 32rem;
+}
+.mb60{
+	margin-bottom: 60rem;
+}
+
+.fw500{
+	font-weight: 500;
+}
+
+.width-100{
+	width: 100%;
+}
+
+.tac{
+	text-align: center;
+}
+
+.p48{
+	padding:48rem; 
+}
+
+
+
+
+
+
