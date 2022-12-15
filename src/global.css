@@ -6,31 +6,6 @@ div{
   box-sizing: border-box;
 }
 
-/*pc端*/
-@media only screen and (min-width: 1200px) {
-  html{
-  	font-size: 1px;
-  }
-}
-/*手机端*/
-@media only screen and (max-width: 1199px) {
-  html{
-    font-size: .6px;
-  }
-}
-/*pad端*/
-/*@media only screen and (min-width: 768px) and (max-width: 1199px) {
-  html{
-  	font-size: 1px;
-  }
-}*/
-/*手机端*/
-/*@media only screen and (max-width: 767px) {
-  html{
-  	font-size: .6px;
-  }
-}*/
-
 /* 取消input的上下箭头 */
 input::-webkit-inner-spin-button {
   -webkit-appearance: none !important;

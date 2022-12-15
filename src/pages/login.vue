@@ -4,11 +4,11 @@
 		<div class="login_content">
 			<div class="primary_color f22 fw500 width-100 tac mb32">手机号密码登录</div>
 			<div class="input_box mb32">
-				<input type="number" class="phone" v-model="phone" placeholder="请输入手机号">
+				<input type="number" class="phone" autofocus v-model="phone" placeholder="请输入手机号" @keyup.enter="login">
 				<img class="clear_icon" src="../static/clear_icon.png" @click="phone = ''">
 			</div>
 			<div class="input_box mb60">
-				<input type="password" class="phone" v-model="password" placeholder="请输入密码">
+				<input type="password" class="phone" v-model="password" maxlength="20" placeholder="请输入密码" @keyup.enter="login">
 				<img class="clear_icon" src="../static/clear_icon.png" @click="password = ''">
 			</div>
 			<!-- <div class="input_box mb60">
@@ -157,7 +157,7 @@
 	.input_box{
 		position: relative;
 		width: 100%;
-		height: 52rem;
+		height: 40rem;
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
@@ -170,7 +170,7 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			font-size: 16rem;
+			font-size: 12px;
 			border:none;
 			outline: none;
 			padding-left: 22rem;

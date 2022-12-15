@@ -4,15 +4,15 @@
 		<div class="login_content">
 			<div class="primary_color f22 fw500 width-100 tac mb32">修改密码</div>
 			<div class="input_box mb32">
-				<input type="password" v-model="password" placeholder="请输入密码">
+				<input type="password" v-model="password" maxlength="20" placeholder="请输入旧密码">
 				<img class="clear_icon" src="../static/clear_icon.png" @click="password = ''">
 			</div>
 			<div class="input_box mb32">
-				<input type="password" v-model="new_password" placeholder="请输入新密码">
+				<input type="password" v-model="new_password" maxlength="20" placeholder="请输入新密码">
 				<img class="clear_icon" src="../static/clear_icon.png" @click="new_password = ''">
 			</div>
 			<div class="input_box mb60">
-				<input type="password" v-model="confirm_password" placeholder="请确认密码">
+				<input type="password" v-model="confirm_password" maxlength="20" placeholder="请重复密码">
 				<img class="clear_icon" src="../static/clear_icon.png" @click="confirm_password = ''">
 			</div>
 			<div class="login" @click="confirmFn">提交</div>
