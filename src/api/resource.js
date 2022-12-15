@@ -2,6 +2,8 @@ import http from './request.js'
 let path = {	
 	getSms:'supplier/sms',											//发送验证码
 	login:'login',													//登录
+	quit:'supplier/quit',											//退出
+	editPwd:'supplier/edit_pwd',									//修改密码
 	boardGysInfo:'supply_chain/board_gys_info',						//供应商看板-头部汇总信息
 	getGysWeekMonthTotal:'supply_chain/get_gys_weekmonth_total',	//供应商看板 本月本周销量和环比
 	getGysWeekMonthChart:'supply_chain/get_gys_weekmonth_table',	//供应商看板-本月本周销量图表
@@ -18,6 +20,14 @@ export default{
 	//登录
 	login(params){
 		return http.post(path.login, params)
+	},
+	//退出
+	quit(params){
+		return http.post(path.quit, params)
+	},
+	//修改密码
+	editPwd(params){
+		return http.post(path.editPwd, params)
 	},
 	//供应商看板-头部汇总信息
 	boardGysInfo(params){

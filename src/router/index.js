@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 
 const login = (resolve) => require(["@/pages/login"], resolve);
+const update = (resolve) => require(["@/pages/update"], resolve);
 const index = (resolve) => require(["@/pages/index"], resolve);
 
 Vue.use(Router);
@@ -11,6 +12,10 @@ const router = new Router({
     path: "/login",
     name: "登录",
     component: login
+  },{
+    path: "/update",
+    name: "修改密码",
+    component: update
   },{
     path: "/index",
     name: "首页",

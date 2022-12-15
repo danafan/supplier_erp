@@ -8,7 +8,7 @@
 				<img class="clear_icon" src="../static/clear_icon.png" @click="phone = ''">
 			</div>
 			<div class="input_box mb60">
-				<input type="number" class="phone" v-model="password" placeholder="请输入密码">
+				<input type="password" class="phone" v-model="password" placeholder="请输入密码">
 				<img class="clear_icon" src="../static/clear_icon.png" @click="password = ''">
 			</div>
 			<!-- <div class="input_box mb60">
@@ -34,6 +34,7 @@
       		}
       	},
       	methods:{
+      		//点击登录
       		login(){
         		if(!this.judgmentPhone.test(this.phone)){
         			this.$message.warning("请输入正确的手机号");
