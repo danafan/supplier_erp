@@ -15,6 +15,7 @@ module.exports = {
 	},
 	assetsDir: "supplier",
 	lintOnSave: true,
+	productionSourceMap: false,
 	chainWebpack: (config)=>{
 		config.resolve.alias
 		.set('vendor',resolve('./src/vendor'))

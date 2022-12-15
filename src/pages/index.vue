@@ -1,6 +1,22 @@
 <template>
 	<div class="supplier_data_container">
 		<div class="page_top_row">
+			<!-- <div class="input_box">
+				<img class="s_search_icon" src="../../../static/s_search_icon.png">
+				<input placeholder="供应商名称" @click.stop="show_list = true" v-model="supplier_name">
+				<div class="search_button" @click="boardGysInfo">搜索</div>
+				<div class="search_list" v-show="show_list">
+					<div class="supplier_item" :class="{'active_index':active_index == index}" v-for="(item,index) in supplier_list" @click="changeSupplier(index)">{{item}}</div>
+				</div>
+			</div> -->
+			<el-form :inline="true" size="small" class="demo-form-inline">
+				<el-form-item label="供应商：">
+					<el-select v-model="supplier_name" filterable remote reserve-keyword placeholder="请输入供应商" @change="boardGysInfo">
+						<el-option v-for="item in supplier_list" :key="item" :label="item" :value="item">
+						</el-option>
+					</el-select>
+				</el-form-item>
+			</el-form>
 			<div class="name">{{top_info.gys}}</div>
 			<div class="type_row">
 				<div>{{top_info.jsfs}}</div>
@@ -195,6 +211,7 @@
 	export default{
 		data(){
 			return{
+				supplier_name:"",	//可传递的供应商名称
 				update_date:"",		//数据更新日
 				top_info:{},		//顶部信息
 				info_loading:false,
@@ -347,8 +364,15 @@
 			}
 		},
 		created(){
+			this.supplier_name = this.supplier_list[0];
 			//获取顶部数据
 			this.boardGysInfo();
+		},
+		computed:{
+			//供应商列表
+			supplier_list(){
+				return this.$store.state.supplier_list;
+			}
 		},
 		methods:{
 			//顶部悬浮
@@ -370,8 +394,11 @@
 			},
 			//获取顶部数据
 			boardGysInfo(){
+				let arg = {
+					gys:this.supplier_name
+				}
 				this.info_loading = true;
-				resource.boardGysInfo().then(res => {
+				resource.boardGysInfo(arg).then(res => {
 					if(res.data.code == 1){
 						this.info_loading = false;
 						let data = res.data.data;
@@ -687,6 +714,64 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		.input_box{
+			position: relative;
+			border-radius: 20px;
+			border: 1px solid #5575EB;
+			height: 40px;
+			display: flex;
+			align-items: center;
+			padding-left: 10px;
+			.s_search_icon{
+				margin-right: 5px;
+				width: 16px;
+				height: 16px;
+			}
+			input{
+				flex:1;
+				background: #ECEFF8;
+				border:none;
+				outline: none;
+				font-size: 14px;
+				padding-right: 5px;
+			}
+			.search_button{
+				cursor: pointer;
+				border-radius: 0 20px 20px 0;
+				background: #5575EB;
+				width: 60px;
+				text-align: center;
+				height: 40px;
+				line-height: 40px;
+				font-size: 14px;
+				color: #ffffff;
+			}
+			.search_list{
+				position: absolute;
+				top: 40px;
+				left: 18px;
+				min-width: 150px;
+				height: 130px;
+				padding:7px 15px;
+				background: #ffffff;
+				box-shadow: 0px 2px 12px 0px #D1DAFF;
+				border-radius: 0px 0px 2px 2px;
+				overflow-y: scroll;
+				.supplier_item{
+					cursor: pointer;
+					padding: 5px 0;
+					color: #333333;
+					font-size: 14px;
+				}
+				.supplier_item:hover{
+					color: #5575EB;
+				}
+				.active_index{
+					color: #5575EB;
+				}
+			}
+			.search_list::-webkit-scrollbar{display:none}
+		}
 		.name{
 			color: #5575EB;
 			font-size: 30px;
