@@ -262,17 +262,13 @@
 					type:3
 				},{
 					label:"供应商货号",
-					width:"100",
+					width:"140",
 					prop:'gyshh',
+					type:2,
 				},{
 					label:"7天日均销量",
 					prop:'xssl_sum_7',
 					width:"120",
-					is_fixed:true
-				},{
-					label:"30天销量",
-					prop:'xssl_sum_30',
-					width:"100",
 					is_fixed:true
 				},{
 					label:"7天毛利率",
@@ -335,7 +331,6 @@
 					label:"款式编码",
 					prop:'ksbm',
 					width:"90",
-					type:2,
 				}],							//款式信息列
 				date:"",
 				ks_table_data:[],			//款式信息数据列表
@@ -371,11 +366,6 @@
 				},{
 					label:"7天销量",
 					prop:"xssl_sum_7",
-					width:"100",
-					is_fixed:true
-				},{
-					label:"30天销量",
-					prop:"xssl_sum_30",
 					width:"100",
 					is_fixed:true
 				},{
@@ -728,9 +718,9 @@
 							this.sku_loading = false;
 							this.detailDialog = true;
 							let data = res.data.data;
-							this.sku_column_list[5].label = `${getNextDate(this.date,-3)}日销量`;
-							this.sku_column_list[6].label = `${getNextDate(this.date,-2)}日销量`;
-							this.sku_column_list[7].label = `${getNextDate(this.date,-1)}日销量`;
+							this.sku_column_list[4].label = `${getNextDate(this.date,-3)}日销量`;
+							this.sku_column_list[5].label = `${getNextDate(this.date,-2)}日销量`;
+							this.sku_column_list[6].label = `${getNextDate(this.date,-1)}日销量`;
 							if(data.length == 0){
 								this.sku_table_data = [];
 							}else{
