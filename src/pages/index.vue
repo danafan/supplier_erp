@@ -29,7 +29,7 @@
 			</div>
 			<el-card v-loading="info_loading">
 				<div slot="header">
-					<span class="card_title">数据更新日：{{update_date}}</span>
+					<span class="card_title">数据更新时间：{{update_date}}</span>
 				</div>
 				<div class="content_row">
 					<div class="row_item">
@@ -39,13 +39,23 @@
 							<div class="text_label">在售款数</div>
 						</div>
 					</div>
-					<div class="row_item">
-						<img class="item_icon" src="../static/zrxl_icon.png">
-						<div class="item_text">
-							<div class="text_val">{{top_info.xssl_1}}</div>
-							<div class="text_label">昨日销量</div>
+					<el-popover placement="right" width="530" trigger="click">
+						<el-table :data="xssl_1_data.data" tooltip-effect="dark" style="width: 100%" :header-cell-style="{'background':'#f4f4f4'}" max-height="300px">
+							<el-table-column width="280" align="center" show-overflow-tooltip property="gyshh" label="供应商货号"></el-table-column>
+							<el-table-column width="240" align="center" show-overflow-tooltip property="xssl_1" label="销量"></el-table-column>
+						</el-table>
+						<div class="page">
+							<el-pagination @size-change="detailSizeChange" @current-change="detailPageChange" :current-page="detail_page" :pager-count="5" :page-size="detail_pagesize" layout="total, prev, pager, next, jumper" :total="xssl_1_data.total">
+							</el-pagination>
 						</div>
-					</div>
+						<div class="row_item pointer" slot="reference" @click="getDetail('xssl_1')">
+							<img class="item_icon" src="../static/zrxl_icon.png">
+							<div class="item_text">
+								<div class="text_val">{{top_info.xssl_1}}</div>
+								<div class="text_label">昨日销量</div>
+							</div>
+						</div>
+					</el-popover>
 					<div class="row_item">
 						<img class="item_icon" src="../static/jsstxl_icon.png">
 						<div class="item_text">
@@ -75,30 +85,45 @@
 				</div>
 				<div class="content_row">
 					<div class="bhtj_item">
-						<div class="val_item">
-							<div class="bhtj_val">{{top_info.qhs}}</div>
-							<div class="bhtj_label">缺货数</div>
-						</div>
-						<div class="val_item margin_top">
-							<div class="bhtj_val">{{top_info.zrdhl}}</div>
-							<div class="bhtj_label">昨日到货率</div>
-						</div>
-					</div>
-					<div class="bhtj_item">
-						<div class="val_item">
-							<div class="bhtj_val">{{top_info.xykc}}</div>
-							<div class="bhtj_label">库存数</div>
-						</div>
+						<el-popover placement="right" width="710" trigger="click">
+							<el-table :data="xykc_data.data" tooltip-effect="dark" style="width: 100%" :header-cell-style="{'background':'#f4f4f4'}" max-height="300px">
+								<el-table-column width="280" align="center" show-overflow-tooltip property="gyshh" label="供应商货号"></el-table-column>
+								<el-table-column width="120" align="center" show-overflow-tooltip property="color" label="颜色"></el-table-column>
+								<el-table-column width="120" align="center" show-overflow-tooltip property="size" label="尺码"></el-table-column>
+								<el-table-column width="180" align="center" show-overflow-tooltip property="xykc" label="当前库存数量"></el-table-column>
+							</el-table>
+							<div class="page">
+								<el-pagination @size-change="detailSizeChange" @current-change="detailPageChange" :current-page="detail_page" :pager-count="5" :page-size="detail_pagesize" layout="total, prev, pager, next, jumper" :total="xykc_data.total">
+								</el-pagination>
+							</div>
+							<div class="val_item pointer" slot="reference" @click="getDetail('xykc')">
+								<div class="bhtj_val">{{top_info.xykc}}</div>
+								<div class="bhtj_label">当前库存</div>
+							</div>
+						</el-popover>
 						<div class="val_item margin_top">
 							<div class="bhtj_val">{{top_info.pbh_dhl_1}}</div>
 							<div class="bhtj_label">昨日排除备货到货率</div>
 						</div>
 					</div>
 					<div class="bhtj_item">
-						<div class="val_item">
-							<div class="bhtj_val">{{top_info.cgsl_7}}</div>
-							<div class="bhtj_label">报货数</div>
-						</div>
+						<el-popover placement="right" width="710" trigger="click">
+							<el-table :data="cgsl_0_data.data" tooltip-effect="dark" style="width: 100%" :header-cell-style="{'background':'#f4f4f4'}" max-height="300px">
+								<el-table-column width="280" align="center" show-overflow-tooltip property="gyshh" label="供应商货号"></el-table-column>
+								<el-table-column width="120" align="center" show-overflow-tooltip property="color" label="颜色"></el-table-column>
+								<el-table-column width="120" align="center" show-overflow-tooltip property="size" label="尺码"></el-table-column>
+								<el-table-column width="180" align="center" show-overflow-tooltip property="cgsl_0" label="报货数量"></el-table-column>
+							</el-table>
+							<div class="page">
+								<el-pagination @size-change="detailSizeChange" @current-change="detailPageChange" :current-page="detail_page" :pager-count="5" :page-size="detail_pagesize" layout="total, prev, pager, next, jumper" :total="cgsl_0_data.total">
+								</el-pagination>
+							</div>
+							<div class="val_item pointer" slot="reference" @click="getDetail('cgsl_0')">
+								<div class="bhtj_val">{{top_info.jrbhs}}</div>
+								<div class="bhtj_label">今日报货数</div>
+							</div>
+						</el-popover>
+						
 						<div class="val_item margin_top">
 							<div class="bhtj_val">{{top_info.dhl_7}}</div>
 							<div class="bhtj_label">7天到货率</div>
@@ -106,8 +131,8 @@
 					</div>
 					<div class="bhtj_item">
 						<div class="val_item">
-							<div class="bhtj_val">{{top_info.rksl_7}}</div>
-							<div class="bhtj_label">到货数</div>
+							<div class="bhtj_val">{{top_info.zrdhl}}</div>
+							<div class="bhtj_label">昨日到货率</div>
 						</div>
 						<div class="val_item margin_top">
 							<div class="bhtj_val">{{top_info.pbh_dhl_7}}</div>
@@ -174,9 +199,9 @@
 						</el-form-item>
 					</el-form>
 					<el-table size="small" :data="ks_table_data" tooltip-effect="dark" style="width: 100%" :header-cell-style="{'background':'#f4f4f4'}" @sort-change="ksSortChange" ref="ks_table" v-loading="ks_loading">
-						<el-table-column :prop="item.prop" :label="item.label" width="100" align="center" show-overflow-tooltip :sort-orders="['descending', 'ascending', null]" :sortable="item.is_fixed?'custom':false" :render-header="renderHeader" v-for="item in ks_column_list">
+						<el-table-column :prop="item.prop" :label="item.label" :width="item.width" align="center" show-overflow-tooltip :sort-orders="['descending', 'ascending', null]" :sortable="item.is_fixed?'custom':false" :render-header="renderHeader" v-for="item in ks_column_list">
 							<template slot-scope="scope">
-								<div style="color: #1890FF;cursor: pointer" v-if="item.type == 2" @click="getDetail(scope.row.ksbm)">{{scope.row[item.prop]}}</div>
+								<div style="color: #1890FF;cursor: pointer" v-if="item.type == 2" @click="getDetail('sku',scope.row.ksbm)">{{scope.row[item.prop]}}</div>
 								<!-- 图片 -->
 								<el-image :z-index="2008" style="width: 50px;height: 50px" :src="scope.row.images[0]" fit="scale-down" :preview-src-list="scope.row.images" v-else-if="item.type == 3"></el-image>
 								<!-- 供应商/等级 -->
@@ -194,12 +219,12 @@
 			</el-card>
 		</div>
 		<!-- 下钻 -->
-		<el-dialog title="SKU信息" width="70%" @close="closeDetail" :visible.sync="detailDialog">
+		<el-dialog title="SKU信息" @close="closeDetail" :visible.sync="detailDialog">
 			<el-table size="small" :data="sku_table_data" tooltip-effect="dark" style="width: 100%" :header-cell-style="{'background':'#f4f4f4'}"  @sort-change="skuSortChange" ref="sku_table" v-loading="sku_loading">
-				<el-table-column :prop="item.prop" :label="item.label" width="100" align="center" show-overflow-tooltip :sort-orders="['descending', 'ascending', null]" :sortable="item.is_fixed?'custom':false" :render-header="renderHeader" v-for="item in sku_column_list"></el-table-column>
+				<el-table-column :prop="item.prop" :label="item.label" :width="item.width" align="center" show-overflow-tooltip :sort-orders="['descending', 'ascending', null]" :sortable="item.is_fixed?'custom':false" :render-header="renderHeader" v-for="item in sku_column_list"></el-table-column>
 			</el-table>
 			<div class="page">
-				<el-pagination @size-change="skuSizeChange" @current-change="skuPageChange" :current-page="sku_page" :pager-count="11" :page-size="sku_pagesize" :page-sizes="[5, 10, 15, 20]" layout="total, sizes, prev, pager, next, jumper" :total="sku_total">
+				<el-pagination @size-change="detailSizeChange" @current-change="detailPageChange" :current-page="detail_page" :pager-count="11" :page-size="detail_pagesize" :page-sizes="[5, 10, 15, 20]" layout="total, sizes, prev, pager, next, jumper" :total="sku_total">
 				</el-pagination>
 			</div>
 		</el-dialog>
@@ -233,139 +258,147 @@
 				ks_column_list:[{
 					label:"图片",
 					prop:'tp',
+					width:"120",
 					type:3
 				},{
-					label:"款式编码",
-					prop:'ksbm',
-					type:2,
-				},{
 					label:"供应商货号",
+					width:"100",
 					prop:'gyshh',
 				},{
 					label:"7天日均销量",
 					prop:'xssl_sum_7',
+					width:"120",
 					is_fixed:true
 				},{
 					label:"30天销量",
 					prop:'xssl_sum_30',
+					width:"100",
 					is_fixed:true
 				},{
 					label:"7天毛利率",
 					prop:'mll',
+					width:"100",
 					is_fixed:true
 				},{
 					label:"15天实退率",
 					prop:'stl_15',
+					width:"120",
 					is_fixed:true
 				},{
 					label:"7天到货率",
 					prop:'dhl_7',
+					width:"100",
 					is_fixed:true
 				},{
 					label:"",
 					prop:'xssl_3',
+					width:"100",
 				},{
 					label:"",
 					prop:'xssl_2',
+					width:"100",
 				},{
 					label:"",
 					prop:'xssl_1',
+					width:"100",
 				},{
 					label:"主卖店铺",
 					prop:'zmdp',
-				},{
-					label:"",
-					prop:'dhs_3',
-				},{
-					label:"",
-					prop:'dhs_2',
-				},{
-					label:"",
-					prop:'dhs_1',
+					width:"100",
 				},{
 					label:"现有库存",
 					prop:'xykc',
-					is_fixed:true
-				},{
-					label:"缺货数",
-					prop:'qhs',
+					width:"100",
 					is_fixed:true
 				},{
 					label:"批发价",
 					prop:'pfj',
+					width:"80",
 				},{
 					label:"审计成本",
 					prop:'sjcb',
+					width:"80",
 				},{
 					label:"商品名称",
 					prop:'mc',
+					width:"100",
 				},{
 					label:"供应商/供应商等级",
 					prop:"",
+					width:"130",
 					type:4,
 				},{
 					label:"结算方式",
 					prop:'jsfs',
+					width:"90",
+				},{
+					label:"款式编码",
+					prop:'ksbm',
+					width:"90",
+					type:2,
 				}],							//款式信息列
+				date:"",
 				ks_table_data:[],			//款式信息数据列表
 				ks_total:0,
 				ks_loading:false,
 				ks_sort:"",
 				ks_page:1,
 				ks_pagesize:10,	
-				detailDialog:false,			//下钻弹窗
+				detail_page:1,				//下钻的页码
+				detail_pagesize:10,			
+				xssl_1_data:{},				//昨日销量数据
+				xykc_data:{},				//当前库存数据
+				cgsl_0_data:{},				//今日报货数
+				detailDialog:false,			//sku弹窗
+				sku_table_data:[],			//sku数据列表
+				sku_total:0,				
+				sku_loading:false,
+				detail_sku:"",				//sku下钻
+				detail_sort:"",				//sku排序
 				sku_column_list:[{
-					label:"商品编码",
-					prop:"spbm"
+					label:"颜色",
+					width:"100",
+					prop:"color"
+				},{
+					label:"尺码",
+					width:"100",
+					prop:"size"
 				},{
 					label:"3天销量",
 					prop:"xssl_sum_3",
+					width:"100",
 					is_fixed:true
 				},{
 					label:"7天销量",
 					prop:"xssl_sum_7",
+					width:"100",
 					is_fixed:true
 				},{
 					label:"30天销量",
 					prop:"xssl_sum_30",
+					width:"100",
 					is_fixed:true
 				},{
 					label:"",
-					prop:"xssl_3"
+					width:"120",
+					prop:"xssl_3",
+					is_fixed:true
 				},{
 					label:"",
-					prop:"xssl_2"
+					width:"120",
+					prop:"xssl_2",
+					is_fixed:true
 				},{
 					label:"",
-					prop:"xssl_1"
+					width:"120",
+					prop:"xssl_1",
+					is_fixed:true
 				},{
 					label:"现有库存",
 					prop:"xykc",
+					width:"100",
 					is_fixed:true
-				},{
-					label:"订单占有数",
-					prop:"ddzy",
-					is_fixed:true
-				},{
-					label:"缺货数",
-					prop:"qhs",
-					is_fixed:true
-				},{
-					label:"",
-					prop:"dhs_3"
-				},{
-					label:"",
-					prop:"dhs_2"
-				},{
-					label:"",
-					prop:"dhs_1"
 				}],							//sku信息列
-				sku_table_data:[],			//sku数据列表
-				sku_total:0,				
-				sku_loading:false,
-				sku_sort:"",
-				sku_page:1,
-				sku_pagesize:10,	
 			}
 		},
 		created(){
@@ -604,14 +637,10 @@
 					if(res.data.code == 1){
 						this.ks_loading = false;
 						let data = res.data.data;
-						let date = data.date;
-						this.ks_column_list[8].label = `${getNextDate(date,-3)}日销量`;
-						this.ks_column_list[9].label = `${getNextDate(date,-2)}日销量`;
-						this.ks_column_list[10].label = `${getNextDate(date,-1)}日销量`;
-						this.ks_column_list[12].label = `${getNextDate(date,-3)}日到货`;
-						this.ks_column_list[13].label = `${getNextDate(date,-2)}日到货`;
-						this.ks_column_list[14].label = `${getNextDate(date,-1)}日到货`;
-						
+						this.date = data.date.split(' ')[0];
+						this.ks_column_list[7].label = `${getNextDate(this.date,-3)}日销量`;
+						this.ks_column_list[8].label = `${getNextDate(this.date,-2)}日销量`;
+						this.ks_column_list[9].label = `${getNextDate(this.date,-1)}日销量`;
 						if(data.length == 0){
 							this.ks_table_data = [];
 						}else{
@@ -658,73 +687,92 @@
 				});
 			},
 			//点击下钻
-			getDetail(ksbm){
-				this.detailDialog = true;
-				this.select_ksbm = ksbm;
-				//sku信息列表
-				this.skuInfoData();
-			},
-			//关闭弹窗
-			closeDetail(){
-				this.sku_page = 1;
-				this.sku_pagesize = 10;
-				this.sku_sort = "";
-				this.$refs.sku_table.clearSort(); // 清除排序
-			},
-			//sku信息分页
-			skuSizeChange(val) {
-				this.sku_pagesize = val;
-				//sku信息列表
-				this.skuInfoData();
-			},
-			skuPageChange(val) {
-				this.sku_page = val;
-				//sku信息列表
-				this.skuInfoData();
-			},
-			//sku信息排序
-			skuSortChange(column){
-				if(column.order){
-					let order = column.order == 'ascending'?'1':'0';
-					this.sku_sort = column.prop + '-' + order;
-				}else{
-					this.sku_sort = "";
-				}
-				//款式信息列表
-				this.skuInfoData();
-			},
-			//sku信息列表
-			skuInfoData(){
+			getDetail(type,ksbm){
+				this.detail_type = type;
+				this.detail_page = 1;
+				this.detail_pagesize = 10;
 				let arg = {
-					ksbm:this.select_ksbm,
-					sort:this.sku_sort,
-					page:this.sku_page,
-					pagesize:this.sku_pagesize
+					gys:this.supplier_name,
+					type:this.detail_type,
+					page:this.detail_page,
+					pagesize:this.detail_pagesize
 				}
-				this.sku_loading = true;
-				resource.getGysSkuList(arg).then(res => {
+				if(this.detail_type == 'sku'){
+					this.detail_sku = ksbm;
+				}
+				//获取列表
+				this.getDetailList()
+			},
+			//获取列表
+			getDetailList(){
+				let arg = {
+					gys:this.supplier_name,
+					type:this.detail_type,
+					page:this.detail_page,
+					pagesize:this.detail_pagesize
+				}
+				if(this.detail_type == 'sku'){
+					this.sku_loading = true;
+					arg.ksbm = this.detail_sku;
+					arg.sort = this.detail_sort;
+				}
+				resource.getDetail(arg).then(res => {
 					if(res.data.code == 1){
-						this.sku_loading = false;
-						let data = res.data.data;
-						let date = data.date;
-						this.sku_column_list[4].label = `${getNextDate(date,-3)}日销量`;
-						this.sku_column_list[5].label = `${getNextDate(date,-2)}日销量`;
-						this.sku_column_list[6].label = `${getNextDate(date,-1)}日销量`;
-						this.sku_column_list[10].label = `${getNextDate(date,-3)}日到货`;
-						this.sku_column_list[11].label = `${getNextDate(date,-2)}日到货`;
-						this.sku_column_list[12].label = `${getNextDate(date,-1)}日到货`;
-						
-						if(data.length == 0){
-							this.sku_table_data = [];
-						}else{
-							this.sku_table_data = data.data;
-							this.sku_total = data.total;
+						if(this.detail_type == 'xssl_1'){	//昨日销量
+							this.xssl_1_data = res.data.data;
+						}else if(this.detail_type == 'xykc'){
+							this.xykc_data = res.data.data;
+						}else if(this.detail_type == 'cgsl_0'){
+							this.cgsl_0_data = res.data.data;
+						}else if(this.detail_type == 'sku'){
+							this.sku_loading = false;
+							this.detailDialog = true;
+							let data = res.data.data;
+							this.sku_column_list[5].label = `${getNextDate(this.date,-3)}日销量`;
+							this.sku_column_list[6].label = `${getNextDate(this.date,-2)}日销量`;
+							this.sku_column_list[7].label = `${getNextDate(this.date,-1)}日销量`;
+							if(data.length == 0){
+								this.sku_table_data = [];
+							}else{
+								this.sku_table_data = data.data;
+								this.sku_total = data.total;
+							}
 						}
 					}else{
 						this.$message.warning(res.data.msg);
 					}
 				})
-			}
+			},
+			//详情分页
+			detailSizeChange(val) {
+				this.detail_pagesize = val;
+				//点击下钻
+				this.getDetailList();
+			},
+			detailPageChange(val,type) {
+				this.detail_page = val;
+				//点击下钻
+				this.getDetailList();
+			},
+			//sku信息排序
+			skuSortChange(column){
+				if(column.order){
+					let order = column.order == 'ascending'?'1':'0';
+					this.detail_sort = column.prop + '-' + order;
+				}else{
+					this.detail_sort = "";
+				}
+				//款式信息列表
+				this.getDetailList();
+			},
+			//关闭弹窗
+			closeDetail(){
+				this.detail_page = 1;
+				this.detail_pagesize = 10;
+				this.detail_sort = "";
+				this.$refs.sku_table.clearSort(); // 清除排序
+			},
+			
 		}
 	}
 </script>
@@ -817,7 +865,7 @@
 				}
 			}
 			.bhtj_item{
-				width: 25%;
+				width: 200px;
 				.val_item{
 					.bhtj_val{
 						color: #5575EB;
@@ -894,6 +942,14 @@
 			}
 
 		}
+	}
+	.pointer{
+		cursor: pointer;
+	}
+	.page{
+		margin-top: 10px;
+		display: flex;
+		justify-content: flex-end;
 	}
 }
 </style>

@@ -4,12 +4,13 @@ let path = {
 	login:'login',													//登录
 	quit:'supplier/quit',											//退出
 	editPwd:'supplier/edit_pwd',									//修改密码
-	boardGysInfo:'supply_chain/board_gys_info',						//供应商看板-头部汇总信息
-	getGysWeekMonthTotal:'supply_chain/get_gys_weekmonth_total',	//供应商看板 本月本周销量和环比
-	getGysWeekMonthChart:'supply_chain/get_gys_weekmonth_table',	//供应商看板-本月本周销量图表
-	getGysKsbmList:'supply_chain/get_gys_ksbm_list',				//供应商看板-款式编码列表
-	getGysKsbmExport:'supply_chain/get_gys_ksbm_export',			//款式编码列表导出
-	getGysSkuList:'supply_chain/get_gys_sku_list',					//下钻列表
+	boardGysInfo:'gys/board_gys_info',								//供应商看板-头部汇总信息
+	getDetail:'gys/detail',											//下钻	
+	getGysWeekMonthTotal:'gys/get_gys_weekmonth_total',				//供应商看板 本月本周销量和环比
+	getGysWeekMonthChart:'gys/get_gys_weekmonth_table',				//供应商看板-本月本周销量图表
+	getGysKsbmList:'gys/gys_ksbm',									//供应商看板-款式编码列表
+	getGysKsbmExport:'gys/gys_ksbm_export',							//款式编码列表导出
+																				
 	
 }						
 export default{
@@ -49,9 +50,9 @@ export default{
 	getGysKsbmExport(params){
 		return http.post(path.getGysKsbmExport, params)
 	},
-	//下钻列表
-	getGysSkuList(params){
-		return http.get(path.getGysSkuList, params)
+	//下钻
+	getDetail(params){
+		return http.get(path.getDetail, params)
 	},
 	
 }
