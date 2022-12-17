@@ -628,9 +628,9 @@
 						this.ks_loading = false;
 						let data = res.data.data;
 						this.date = data.date.split(' ')[0];
-						this.ks_column_list[7].label = `${getNextDate(this.date,-3)}日销量`;
-						this.ks_column_list[8].label = `${getNextDate(this.date,-2)}日销量`;
-						this.ks_column_list[9].label = `${getNextDate(this.date,-1)}日销量`;
+						this.ks_column_list[6].label = `${getNextDate(this.date,-3)}日销量`;
+						this.ks_column_list[7].label = `${getNextDate(this.date,-2)}日销量`;
+						this.ks_column_list[8].label = `${getNextDate(this.date,-1)}日销量`;
 						if(data.length == 0){
 							this.ks_table_data = [];
 						}else{
