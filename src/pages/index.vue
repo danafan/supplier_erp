@@ -187,8 +187,8 @@
 				</div>
 				<div>
 					<el-form :inline="true" size="small" class="demo-form-inline">
-						<el-form-item label="输入搜索：">
-							<el-input placeholder="款式编码" suffix-icon="el-icon-search" v-model="ksbm" @change="ksPageChange(1,'1')">
+						<el-form-item label="供应商货号：">
+							<el-input placeholder="供应商货号" suffix-icon="el-icon-search" v-model="gyshh" @change="ksPageChange(1,'1')">
 							</el-input>
 						</el-form-item>
 						<el-form-item label="是否新品：">
@@ -253,7 +253,7 @@
 				weekChart:null,
 				week_list_data:{},
 				chart_loading:false,
-				ksbm:"",			//输入的款式编码
+				gyshh:"",			//输入的供应商货号
 				is_new:"",			//是否新品
 				ks_column_list:[{
 					label:"图片",
@@ -616,7 +616,7 @@
 			ksInfoData(){
 				let arg = {
 					gys:this.top_info?this.top_info.gys:"",
-					ksbm:this.ksbm,
+					gyshh:this.gyshh,
 					is_new:this.is_new,
 					sort:this.ks_sort,
 					page:this.ks_page,
@@ -658,7 +658,7 @@
 				}).then(() => {
 					let arg = {
 						gys:this.top_info?this.top_info.gys:"",
-						ksbm:this.ksbm,
+						gyshh:this.gyshh,
 						is_new:this.is_new,
 						sort:this.ks_sort,
 						page:this.ks_page,
